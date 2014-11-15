@@ -1,0 +1,51 @@
+load("sbbsdefs.js");
+
+var show_count = 10; //number of logins to show
+var u = new User(1);	// user object
+var laston_list=new Array(); //array to hold recent users.
+
+function UserLogin(user_number, user_laston) {
+	this.number = user_number;
+	this.logon = user_laston;
+}
+
+function sortByLogin(a, b) {
+	return a.logon - b.logon;
+}
+
+var lastuser;
+if(system.lastuser==undefined)  /* v3.10 */
+	lastuser=system.stats.total_users;
+else                                                    /* v3.11 */
+	lastuser=system.lastuser;
+	
+for(var i=1; i<=lastuser; i++) {
+    u.number = i; //change to current user
+    if (
+		u.stats.total_logons > 0
+		&&
+		u.compare_ars("NOT GUEST")
+		&&
+		((u.settings & USER_DELETED) != USER_DELETED)
+    )
+    	laston_list[laston_list.length] = new UserLogin(i, u.stats.laston_date);	
+}
+
+laston_list.sort(sortByLogin);
+
+
+var start = (laston_list.length > show_count) ? laston_list.length - 1 - show_count : 0;
+
+for (var i=start; i<laston_list.length; i++) {
+	u.number = laston_list[i].number; //Assign to user in list
+	
+	//use the "u" variable to the user to display whatever you want here..
+	console.write(
+		u.alias +
+		" " +
+		new Date(system.timestr(u.stats.laston_date)) +
+		" " +
+		u.connection +
+		"\r\n"
+	);
+}

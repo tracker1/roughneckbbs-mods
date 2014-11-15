@@ -1,0 +1,8 @@
+# s3 Loader, Loads the Synchronet 3 Command Shell (JavaScript)
+
+:top
+EXEC "?trn.js"
+
+# should only see in a shell change
+PAUSE
+GOTO top
