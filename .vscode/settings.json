@@ -1,0 +1,27 @@
+{
+    "editor.rulers": [
+        76,
+        80
+    ],
+    "editor.tabSize": 2,
+    "editor.renderControlCharacters": true,
+    "files.encoding": "cp437",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.encoding": "utf8",
+    },
+    "[json]": {
+        "files.encoding": "utf8",
+        "editor.tabSize": 2,
+    },
+    "[css]": {
+        "files.encoding": "utf8",
+    },
+    "[html]": {
+        "files.encoding": "utf8",
+    },
+    "[.ans]": {
+        "editor.renderControlCharacters": true,
+        "files.encoding": "cp437",
+    }
+}
